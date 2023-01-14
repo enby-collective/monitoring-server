@@ -7,6 +7,7 @@ route:
     - receiver: 'telegram'
       continue: true
     - receiver: 'pager_duty'
+      continue: true
 
 
 receivers:
@@ -21,7 +22,7 @@ receivers:
 - name: telegram
   telegram_configs:
   - bot_token: {{ notifications_telegram_token }}
-    api_url: 'https://api.telegram.org:443'
+    api_url: 'https://api.telegram.org'
     chat_id: {{ notifications_telegram_chat_id }}
     http_config:
       follow_redirects: true
