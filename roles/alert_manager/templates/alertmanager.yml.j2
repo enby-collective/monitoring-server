@@ -15,7 +15,7 @@ receivers:
   email_configs:
   - to: {{ receiving_email }}
     from: {{ notifications_email }}
-    smarthost: 'pro1.mail.ovh.net:465'
+    smarthost: {{ notifications_email_smtp }}
     auth_username: {{ notifications_email }}
     auth_identity: {{ notifications_email }}
     auth_password: {{ notifications_email_password }}
