@@ -2,17 +2,34 @@ global:
   resolve_timeout: 1m
 
 route:
-  receiver: "default-telegram" # see below
+  receiver: mail  # Fallback.
+  routes:
+    - receiver: 'telegram'
+      continue: true
+    - receiver: 'pager_duty'
+
 
 receivers:
-- name: "default-telegram"
+- name: mail
+  email_configs:
+  - to: {{ receiving_email }}
+    from: {{ notifications_email }}
+    smarthost: 'pro1.mail.ovh.net:465'
+    auth_username: {{ notifications_email }}
+    auth_identity: {{ notifications_email }}
+    auth_password: {{ notifications_email_password }}
+- name: telegram
   telegram_configs:
   - bot_token: {{ notifications_telegram_token }}
-    api_url: https://api.telegram.org
+    api_url: 'https://api.telegram.org:443'
     chat_id: {{ notifications_telegram_chat_id }}
-    disable_notifications: false
     http_config:
       follow_redirects: true
-    send_resolved: false
     parse_mode: ""
-
+    disable_notifications: false
+    send_resolved: false
+- name: pager_duty
+  pagerduty_configs:
+  - send_resolved: true
+    service_key: "{{ pager_duty_integration_key }}"
+  
