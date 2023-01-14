@@ -11,6 +11,11 @@ domain_name = monitoring.enby-collective.org
 letsencrypt_email = user@email.com
 loki_user = user
 loki_password = password
+data_user=data
+data_password='ASK'
+notifications_telegram_token = '5937104008:AAHYiQlOvmRiZAAJdWtmStJOZxEeLo42MQE'
+notifications_telegram_chat_id = '-1001827932439'
+pager_duty_integration_key = 'R0207CF1BVLTEQ6N2VW7WOQV210Z7XUC'
 
 [all:vars]
 ansible_user=ansible_user
